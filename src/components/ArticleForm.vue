@@ -1,3 +1,4 @@
+/* eslint-disable */
 <template>
   <form @submit.prevent="">
     <div>
@@ -30,7 +31,7 @@
 </template>
 
 <script>
-
+import store from '@/store/index'
 export default {
     name: "ArticleForm",
     data: () => ({
@@ -47,7 +48,8 @@ export default {
                 body: this.body,
                 published: false
             }
-            this.$emit('addArticle', article)
+						store.addArticle(article)
+						this.$router.push('/')
         }
     }
 }
@@ -64,7 +66,7 @@ export default {
 
     input {
         height: 40px;
-        width: 300px;
+        width: 410px;
         background-color: rgb(228, 236, 243);
         padding-left: 5px;
         color: #000;
