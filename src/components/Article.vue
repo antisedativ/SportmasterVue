@@ -1,20 +1,22 @@
 <template>
-  <div class="wrapper" :class="{published: article.published}">
+  <div class="wrapper" :class="{published: published}">
     <div>
-      <div class="title">
+      <div class="header">
         <span :style="{fontWeight: 'bold'}">
-          {{article.id}}.
+          {{id}}.
         </span>
         <span class="author" :style="{fontStyle: isPublic}">
           {{upperAuthor}}
         </span>
         <div>
-          {{article.title}}
+          <router-link :to="'/article/' + id" class="title">
+            {{title}}
+          </router-link>
         </div>
       </div>
       <div class="body">
         <p>
-          {{article.body}}
+          {{body}}
         </p>
       </div>
     </div>
@@ -27,33 +29,29 @@ import store from '@/store/index'
 export default {
   name: 'ArticleComp',
   props: {
-    article: {
-      type: Object,
-
-      id: Number,
-      author: String,
-      title: String,
-      body: String,
-      published: Boolean
-    },
+    id: Number,
+    author: String,
+    title: String,
+    body: String,
     published: Boolean
   },
   computed: {
     upperAuthor() {
-      return this.article.author.toUpperCase()
+      return this.author.toUpperCase()
     },
     isPublic() {
-      return this.article.published ? 'italic' : 'normal'
+      return this.published ? 'italic' : 'normal'
     }
   },
   methods: {
     publish() {
-      store.changePublic(this.article.id)
+      console.log(this.id)
+      store.changePublic(this.id)
     }
   },
   watch: {
     published(newValue) {
-      console.log(`Статью ${this.article.title} - ${newValue ? 'Опубликовали!' : 'Сняли с публикации!'} `)
+      console.log(`Статью ${this.title} - ${newValue ? 'Опубликовали!' : 'Сняли с публикации!'} `)
     }  
   }
 }
@@ -89,4 +87,15 @@ export default {
 .btn:hover {
 	scale: 1.05;
 }
+
+.title{
+  color: #fff;
+  text-decoration: none;
+}
+
+.title:hover {
+  color: #d4407d;
+}
+
+
 </style>

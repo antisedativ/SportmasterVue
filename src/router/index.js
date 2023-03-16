@@ -2,6 +2,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import MainPage from "@/pages/MainPage";
+import Article from '@/components/Article';
 import store from "@/store";
 
 Vue.use(VueRouter)
@@ -24,8 +25,8 @@ const routes = [
   },
   {
     path: '/article/:id',
-    component: () => import('@/components/Article'),
-    //props: (route) => store.state.articles.find(x => x.id == route.params.id)
+    component: Article,
+    props: (route) => store.state.articles.find(x => x.id == route.params.id)
   }
 ]
 

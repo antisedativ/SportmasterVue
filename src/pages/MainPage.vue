@@ -1,10 +1,13 @@
 <template>
 	<div>
-		<ul v-if="articles">
-			<ArticleComp
-				v-for="article in articles"
+		<ul v-if="this.$root.$data.articles">
+			<Article
+				v-for="article in this.$root.$data.articles"
 				:key="article.id"
-				:article="article"
+				:id="article.id"
+				:author="article.author"
+				:title="article.title"
+				:body="article.body"
 				:published="article.published"
 			/>
 		</ul>
@@ -15,16 +18,11 @@
 </template>
 
 <script>
-import ArticleComp from '@/components/Article.vue'
+import Article from '@/components/Article.vue'
 export default {
 	name: 'MainPage',
 	components: {
-		ArticleComp
-	},
-	data() {
-		return {
-			articles: this.$root.$data.articles,
-		}
+		Article
 	}
 }
 </script>

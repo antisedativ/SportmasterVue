@@ -8,6 +8,7 @@ import store from './store/index'
 import ButtonComp from './UI/ButtonComp.vue'
 
 Vue.component('ButtonComp', ButtonComp)
+
 Vue.config.productionTip = false
 
 new Vue({
