@@ -7,17 +7,14 @@
 </template>
 
 <script>
-import Header from "@/UI/Header";
-import store from '@/store/index'
+import Header from "@/UI/Header"
 export default {
 	name: 'App',
 	components: {
 		Header
 	},
 	created: function () {
-		fetch('/data.json')
-			.then(response => response.json())
-			.then(articles => store.state.articles.push(...articles))
+		this.$store.dispatch('fetchArticles')
 	}
 }
 </script>

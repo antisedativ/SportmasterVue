@@ -25,7 +25,6 @@
 </template>
 
 <script>
-import store from '@/store/index'
 export default {
   name: 'ArticleComp',
   props: {
@@ -45,8 +44,7 @@ export default {
   },
   methods: {
     publish() {
-      console.log(this.id)
-      store.changePublic(this.id)
+      this.$store.commit('changePublic', this.id)
     }
   },
   watch: {

@@ -31,7 +31,6 @@
 </template>
 
 <script>
-import store from '@/store/index'
 export default {
     name: "ArticleForm",
     data: () => ({
@@ -48,8 +47,8 @@ export default {
                 body: this.body,
                 published: false
             }
-						store.addArticle(article)
-						this.$router.push('/')
+            this.$store.commit('addArticle', article)
+            this.$router.push('/')
         }
     }
 }

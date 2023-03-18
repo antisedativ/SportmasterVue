@@ -1,8 +1,8 @@
 <template>
 	<div>
-		<ul v-if="this.$root.$data.articles">
+		<ul v-if="this.$store.getters.getAllArticles">
 			<Article
-				v-for="article in this.$root.$data.articles"
+				v-for="article in this.$store.getters.getAllArticles"
 				:key="article.id"
 				:id="article.id"
 				:author="article.author"

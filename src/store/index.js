@@ -1,21 +1,40 @@
-/* eslint-disable */
-const store = {
-    state: {
-        articles: [],
-    },
-    changePublic(article) {
-        this.state.articles.forEach(e => {
-            if (e.id === article)
+import Vue from 'vue'
+import Vuex from 'vuex'
+
+Vue.use(Vuex)
+
+export default new Vuex.Store({
+  state: {
+    articles: []
+  },
+  getters: {
+    getAllArticles(state) {
+        return state.articles
+    }
+  },
+  mutations: {
+    changePublic(state, articleId) {
+        state.articles.forEach(e => {
+            if (e.id === articleId)
                 e.published = !e.published
         })
     },
-    addArticle(article) {
+    addArticle(state, article) {
         let newArticle = {
-            id: this.state.articles.length + 1,
+            id: state.articles.length + 1,
             ...article
         }
-        this.state.articles.push(newArticle)
+        state.articles.push(newArticle)
+    },
+    setArticles(state, articles) {
+        state.articles = articles
     }
-}
-
-export default store
+  },
+  actions: {
+    fetchArticles(context) {
+        fetch('/data.json')
+			.then(response => response.json())
+			.then(articles => context.commit('setArticles', articles))
+    }
+  }
+})
