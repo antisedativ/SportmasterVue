@@ -10,7 +10,7 @@ import store from './store'
 Vue.component('ButtonComp', ButtonComp)
 
 Vue.config.productionTip = false
-
+*
 new Vue({
   router,
   store,
