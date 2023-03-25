@@ -14,7 +14,7 @@ export default {
 		Header
 	},
 	created: function () {
-		this.$store.dispatch('fetchArticles')
+		this.$store.dispatch('getArticles')
 	}
 }
 </script>

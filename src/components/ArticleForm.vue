@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import { Types } from '@/store/types'
 export default {
     name: "ArticleForm",
     data: () => ({
@@ -47,7 +48,8 @@ export default {
                 body: this.body,
                 published: false
             }
-            this.$store.commit('addArticle', article)
+            // Вызов мутации из types.js
+            this.$store.commit(Types.mutations.changePublic, article)
             this.$router.push('/')
         }
     }

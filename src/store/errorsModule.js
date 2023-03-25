@@ -1,4 +1,5 @@
-import fetchArticles from '@/services/fetchArticles'
+//import fetchArticles from '@/services/fetchArticles'
+import { canceledLoading, getArticles } from '@/services/getArticles'
 
 const errorsModule = {
     state: {
@@ -22,10 +23,11 @@ const errorsModule = {
         }
     },
     actions: {
-        async fetchArticles(context) {
+        async getArticles(context){
             context.commit('setLoading', true)
             try {
-                let body = await fetchArticles()
+                let body = await getArticles()
+                
                 context.commit('setArticles', body)
                 context.commit('setError', '')
                 context.commit('setLoading', false)
@@ -34,8 +36,12 @@ const errorsModule = {
                 context.commit('setError', err.message)
                 console.log(err.message)
             }
+        },
+        async canceledRequest(context) {
+            await canceledLoading()
+            context.commit('setLoading', false)
         }
-      }
+    }
 }
 
 export default errorsModule
