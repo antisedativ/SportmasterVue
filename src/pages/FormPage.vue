@@ -1,7 +1,9 @@
 <template>
-	<div>
-		<ArticleForm />
-	</div>
+	<v-main>
+		<v-container class="justify-center">
+			<ArticleForm />
+		</v-container>
+	</v-main>
 </template>
 
 <script>

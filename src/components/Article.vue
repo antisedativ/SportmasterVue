@@ -1,27 +1,30 @@
 <template>
-  <div class="wrapper" :class="{published: published}">
-    <div>
-      <div class="header">
-        <span :style="{fontWeight: 'bold'}">
-          {{id}}.
-        </span>
-        <span class="author" :style="{fontStyle: isPublic}">
-          {{upperAuthor}}
-        </span>
-        <div>
-          <router-link :to="'/article/' + id" class="title">
-            {{title}}
-          </router-link>
-        </div>
-      </div>
-      <div class="body">
-        <p>
-          {{body}}
-        </p>
-      </div>
-    </div>
-    <button @click="publish" class="btn">Publish</button>
-  </div>
+  <v-container>
+    <v-col cols="8" :class="{published: published}">
+      <v-card>
+        <v-card-title>
+          <span :style="{fontWeight: 'bold'}">
+            {{id}}.
+          </span>
+          <span class="author" :style="{fontStyle: isPublic}">
+            {{upperAuthor}}
+          </span>
+          <div>
+            <router-link :to="'/article/' + id" class="title">
+              {{title}}
+            </router-link>
+          </div>
+        </v-card-title>
+        <v-card-text>
+          <p>
+            {{body}}
+          </p>
+        </v-card-text>
+        <v-btn @click="publish">Publish</v-btn>
+      </v-card>
+      
+    </v-col>
+  </v-container>
 </template>
 
 <script>
@@ -57,37 +60,13 @@ export default {
 
 <style scoped>
 
-.wrapper {
-  width: 600px;
-  border: 3px solid #cc1711;
-  padding: 20px;
-  margin: 30px 20px;
-  border-radius: 20px;
-	background-color: rgba(254,240,204, .6);
-  display: flex;
-  justify-content: space-between;
-}
-
 .published {
-  border: 3px solid #43c691;
-}
-
-.btn {
-  height: 50px;
-  width: 80px;
-  border-radius: 15px;
-  margin-top: 20px;
-  cursor: pointer;
-	background-color: #989da0;
-  color: #fff;
-  border-color: #c8dff2;
-}
-.btn:hover {
-	scale: 1.05;
+  border: 2px solid #43c691;
 }
 
 .title{
-  color: #fff;
+  color: #000;
+  margin-left: 20px;
   text-decoration: none;
 }
 

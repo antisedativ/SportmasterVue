@@ -1,17 +1,22 @@
 /* eslint-disable */
 <template>
-	<div class="app">
+	<v-app class="app">
 		<Header />
-		<router-view />
-	</div>
+		<v-container class="d-flex justify-center">
+			<router-view />
+		</v-container>
+		<Footer />
+	</v-app>
 </template>
 
 <script>
+import Footer from "@/UI/Footer"
 import Header from "@/UI/Header"
 export default {
 	name: 'App',
 	components: {
-		Header
+		Header,
+		Footer
 	},
 	created: function () {
 		this.$store.dispatch('getArticles')
@@ -20,22 +25,10 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap');
 *{
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 }
 
-.app {
-	font-family: 'Montserrat', sans-serif;
-	background-color: #3a3a3a;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	color: #fff;
-	font-size: 25px;
-	width: 100vw;
-	height: 100vh;
-}
 </style>

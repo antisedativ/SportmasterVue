@@ -1,33 +1,33 @@
 /* eslint-disable */
 <template>
-  <form @submit.prevent="">
-    <div>
-        <label for="">Author:</label>
-        <input 
-            v-model="author"
-            placeholder="Author name..."
-            type="text"
-        />
-    </div>
-    <div>
-        <label for="">Title:</label>
-        <input 
-            required
-            v-model="title"
-            placeholder="Title..."
-            type="text"
-        />
-    </div>
-    <div>
-        <label for="">Description:</label>
-        <input 
-            v-model="body"
-            placeholder="Description..."
-            type="text"
-        />
-    </div>
-    <ButtonComp @click.native="addArticle"/>
-  </form>
+    <v-container class="d-flex justify-center">
+        <v-card width="500px" class="justify-center">
+            <v-card-title>
+                <span class="headline">Add new article</span>
+              </v-card-title>
+            <v-form @submit.prevent="">
+                <v-text-field 
+                    v-model="author"
+                    type="text"
+                    label="Author"
+                />
+                <v-text-field 
+                    v-model="title"
+                    label="Title"
+                    type="text"
+                />
+                <v-textarea
+                    v-model="body"
+                    label="Body"
+                    type="text"
+                    clearable 
+                />
+                <ButtonComp @click.native="addArticle"/>
+                    
+            </v-form>
+        </v-card>
+    </v-container>
+
 </template>
 
 <script>
@@ -49,7 +49,7 @@ export default {
                 published: false
             }
             // Вызов мутации из types.js
-            this.$store.commit(Types.mutations.changePublic, article)
+            this.$store.commit(Types.mutations.addArticle, article)
             this.$router.push('/')
         }
     }
@@ -58,25 +58,6 @@ export default {
 
 <style scoped>
     form {
-        margin: 50px 0;
-    }
-
-    label {
-        margin-right: 20px;
-    }
-
-    input {
-        height: 40px;
-        width: 410px;
-        background-color: rgb(228, 236, 243);
-        padding-left: 5px;
-        color: #000;
-        font-size: 20px;
-    }
-
-    div {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 10px;
+        margin: 15px;
     }
 </style>

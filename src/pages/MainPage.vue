@@ -1,18 +1,25 @@
 <template>
-	<div>
+	<v-main class="justify-content">
 		<div v-if="getLoading" class="loader">
-			<Loader />
-			<button class="btn btn-loader" @click="canceledRequest">Отмена</button>
+			<v-progress-circular
+			:size="70"
+			:width="7"
+			color="purple"
+			indeterminate />
+			<v-btn color="primary" class="btn-loader" @click="canceledRequest">Отмена</v-btn>
 		</div>
 		<div v-else>
 			<div v-if="!getError">
-				<div class="header">
+				<v-col cols="8" class="header">
 					<div>Всего статей: {{getAmountArticles}}</div>
-					<button class="btn" @click="getArticles">
-						Обновить
-					</button>
-				</div>
-				<ul v-if="getAllArticles">
+					<div class="btns">
+						<Modal/>
+						<!-- <v-btn color="primary" @click="getArticles">
+							Обновить
+						</v-btn> -->
+					</div>
+				</v-col>
+				<div v-if="getAllArticles">
 					<Article
 						v-for="article in getAllArticles"
 						:key="article.id"
@@ -22,29 +29,29 @@
 						:body="article.body"
 						:published="article.published"
 					/>
-				</ul>
+				</div>
 				<p v-else>
 					No articles in the list.
 				</p>
 			</div>
 			<div v-else>
-				<button class="btn btn-loader" @click="getArticles">
+				<v-btn color="primary" class="btn-loader" @click="getArticles">
 					ПОПРОБОВАТЬ СНОВА
-				</button>
+				</v-btn>
 			</div>
 		</div>
-	</div>
+	</v-main>
 </template>
 
 <script>
 import Article from '@/components/Article.vue'
-import Loader from '@/UI/LoaderComp.vue'
+import Modal from '@/components/Modal.vue'
 import { mapActions, mapGetters } from 'vuex'
 export default {
 	name: 'MainPage',
 	components: {
 		Article,
-		Loader
+		Modal
 	},
 	methods:{
 		...mapActions(['getArticles', 'canceledRequest'])
@@ -64,25 +71,23 @@ export default {
 	justify-content: space-between;
 }
 
-.btn{
-	margin-right: 20px;
-	width: 120px;
-	height: 35px;
-	background-color: #989da0;
-	color: #fff;
-	border-color: #c8dff2;
-	border-radius: 15px;
-	cursor: pointer;
-}
 
 .loader{
 	margin-top: 50px;
 	display: flex;
 	flex-direction: column;
-
+	width: 200px;
 }
 
 .btn-loader {
 	margin: 50px 0;
 }
+
+.cont {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+
 </style>
