@@ -1,8 +1,8 @@
 <template>
     <v-text-field
-    v-bind="$attrs"
-    v-on="$listeners"
-    @input="(v) => $emit('input', v)"
+        v-bind="$attrs"
+        v-on="$listeners"
+        @input="(v) => $emit('input', v)"
     />
 </template>
 <script>

@@ -17,8 +17,8 @@
           </v-card-title>
           <v-card-text>
             <v-container>
-              <v-row>
-                <ArticleForm />
+              <v-row> 
+                <ArticleForm @addArticle="addArticle"/>
               </v-row>
             </v-container>
             <small>*adding new articles</small>
@@ -40,5 +40,11 @@
       data: () => ({
         dialog: false,
       }),
+      methods: {
+        addArticle(status) {
+          console.log('sdad')
+          this.dialog = status
+        }
+      }
     }
   </script>

@@ -37,7 +37,7 @@ export default {
     data: () => ({
         author: '',
         title: '',
-        body: ''
+        body: '',
     }),
     methods: {
         // Добавление новой статьи
@@ -48,6 +48,8 @@ export default {
                 body: this.body,
                 published: false
             }
+
+            this.$emit('addArticle', false)
             // Вызов мутации из types.js
             this.$store.commit(Types.mutations.addArticle, article)
             this.$router.push('/')
